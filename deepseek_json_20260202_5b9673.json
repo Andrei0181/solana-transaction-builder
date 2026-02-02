@@ -1,0 +1,19 @@
+{
+  "name": "solana-transaction-builder",
+  "version": "1.0.0",
+  "description": "Simple Solana transaction builder",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "deploy": "npm run build && git add dist/ && git commit -m 'Deploy' && git subtree push --prefix dist origin gh-pages"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "@types/node": "^20.0.0"
+  },
+  "keywords": ["solana", "blockchain", "typescript"],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Transaction Builder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <h1>Solana Transaction Builder</h1>
+            </div>
+            <p class="subtitle">Visual tool for building and testing Solana transactions</p>
+        </header>
+
+        <!-- Основной контент -->
+        <div class="main-content">
+            <!-- Левая панель: Конструктор -->
+            <div class="left-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-wrench"></i> Transaction Builder</h2>
+                </div>
+
+                <!-- Выбор сети -->
+                <div class="section">
+                    <h3><i class="fas fa-network-wired"></i> Network Settings</h3>
+                    <div class="network-selector">
+                        <div class="form-group">
+                            <label for="network">Network:</label>
+                            <select id="network">
+                                <option value="devnet">Devnet</option>
+                                <option value="testnet">Testnet</option>
+                                <option value="local">Localhost</option>
+                                <option value="mainnet">Mainnet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="rpcUrl">RPC URL:</label>
+                            <input type="text" id="rpcUrl" placeholder="https://api.devnet.solana.com">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Создание инструкций -->
+                <div class="section">
+                    <h3><i class="fas fa-list-ol"></i> Instructions</h3>
+                    <div id="instructions-container">
+                        <!-- Инструкции будут добавляться сюда -->
+                    </div>
+                    <button id="add-instruction-btn" class="btn btn-outline">
+                        <i class="fas fa-plus"></i> Add Instruction
+                    </button>
+                </div>
+
+                <!-- Настройки транзакции -->
+                <div class="section">
+                    <h3><i class="fas fa-cog"></i> Transaction Settings</h3>
+                    <div class="settings">
+                        <label class="checkbox">
+                            <input type="checkbox" id="skipPreflight" checked>
+                            <span>Skip Preflight</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" id="enablePriorityFee">
+                            <span>Enable Priority Fee</span>
+                        </label>
+                        <div class="form-group">
+                            <label for="priorityFee">Priority Fee (microLamports):</label>
+                            <input type="number" id="priorityFee" value="0" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопки действий -->
+                <div class="actions">
+                    <button id="simulate-btn" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Simulate
+                    </button>
+                    <button id="generate-code-btn" class="btn btn-secondary">
+                        <i class="fas fa-code"></i> Generate Code
+                    </button>
+                    <button id="send-btn" class="btn btn-success">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- Правая панель: Результаты -->
+            <div class="right-panel">
+                <!-- Вкладки -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="simulation">
+                        <i class="fas fa-chart-bar"></i> Simulation
+                    </button>
+                    <button class="tab" data-tab="code">
+                        <i class="fas fa-code"></i> Code
+                    </button>
+                    <button class="tab" data-tab="logs">
+                        <i class="fas fa-terminal"></i> Logs
+                    </button>
+                </div>
+
+                <!-- Контент вкладок -->
+                <div class="tab-content">
+                    <!-- Вкладка симуляции -->
+                    <div id="simulation-tab" class="tab-pane active">
+                        <h3><i class="fas fa-chart-line"></i> Simulation Results</h3>
+                        <div class="result-container">
+                            <pre id="simulation-result">No simulation performed yet.</pre>
+                        </div>
+                    </div>
+
+                    <!-- Вкладка кода -->
+                    <div id="code-tab" class="tab-pane">
+                        <h3><i class="fas fa-file-code"></i> Generated Code</h3>
+                        <div class="code-options">
+                            <label>Language:</label>
+                            <select id="language-select">
+                                <option value="typescript">TypeScript</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                            </select>
+                            <button id="copy-code-btn" class="btn btn-small">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="result-container">
+                            <pre id="generated-code">// Code will appear here</pre>
+                        </div>
+                    </div>
+
+                    <!-- Вкладка логов -->
+                    <div id="logs-tab" class="tab-pane">
+                        <h3><i class="fas fa-history"></i> Transaction Logs</h3>
+                        <div class="result-container">
+                            <pre id="transaction-logs">[System] Welcome to Solana Transaction Builder
+[System] Ready to build transactions</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>Solana Transaction Builder v1.0 • Made with <i class="fas fa-heart"></i> for Solana developers</p>
+                <div class="footer-links">
+                    <a href="#" id="export-config"><i class="fas fa-download"></i> Export</a>
+                    <a href="#" id="import-config"><i class="fas fa-upload"></i> Import</a>
+                    <span class="premium-badge">PRO</span>
+                    <a href="#" id="premium-features"><i class="fas fa-crown"></i> Premium</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Шаблон для инструкции -->
+    <template id="instruction-template">
+        <div class="instruction">
+            <div class="instruction-header">
+                <select class="instruction-type">
+                    <option value="transfer">Transfer SOL</option>
+                    <option value="createAccount">Create Account</option>
+                    <option value="tokenTransfer">Token Transfer</option>
+                    <option value="program">Program Call</option>
+                </select>
+                <button class="btn btn-small btn-remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="instruction-body">
+                <!-- Поля будут добавляться динамически -->
+            </div>
+        </div>
+    </template>
+
+    <script type="module" src="/src/index.ts"></script>
+</body>
+</html>

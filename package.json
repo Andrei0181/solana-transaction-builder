@@ -1,0 +1,17 @@
+{
+  "name": "solana-transaction-builder",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.91.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
