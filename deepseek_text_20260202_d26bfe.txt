@@ -1,5 +1,0 @@
-├── src/index.ts      # TypeScript source
-├── dist/             # Compiled JavaScript
-├── index.html        # Main HTML page
-├── tsconfig.json     # TypeScript config
-└── package.json      # Dependencies
